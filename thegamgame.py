@@ -4,11 +4,25 @@ import csv
 import os
 
 
-username = input("Enter full DCSD email address: ")
-messageid = input("What is the message ID you are looking for? ")
+username = "Enter full DCSD email address OR type quit to close the program:\n "
+messageid = "What is the message ID you are looking for?\n "
 
-runthegam = "gam users " + username + " delete messages query rfc822msgid:" + messageid + " doit"
 
-print (runthegam)
+def gam_script():
+    active = True
+    runthegam = "gam users " + username + " delete messages query rfc822msgid:" + messageid + " doit"
+    while active:
+        message_one = raw_input(username)
+        if message_one == "quit":
+            active = False
+            break
+        message_two = raw_input(messageid)
+        if message_two == "quit":
+            active = False
+            break
+        else:
+            print(runthegam)
+            os.system(runthegam)
 
-os.system(runthegam)
+
+gam_script()
